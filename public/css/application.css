@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.form {
+  background-color: #f9f9fb;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 18px solid #efbd3d;
+  margin: 20px auto;
+  max-width: 300px;
+  padding: 20px;
+  text-align: left;
+}
+
+.btn {
+  background-color: #76c6a0;
+  color: #fff;
+}
+
+.container {
+  width:100%;
+  margin: 0 auto;
+}
+
+.container h1 {
+  text-align: center;
+}
