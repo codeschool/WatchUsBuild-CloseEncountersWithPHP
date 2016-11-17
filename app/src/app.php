@@ -1,8 +1,13 @@
 <?php
 require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/../requests/Request.php';
+require __DIR__ . '/../requests/RequestRepository.php';
+// require __DIR__ . '/db.php';
 
 use Respect\Validation\Validator;
 use Respect\Validation\Exceptions\NestedValidationException;
+use App\Requests\Request;
+use App\Requests\RequestRepository;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $depart_date = trim($_POST['dateDeparture']);
@@ -20,8 +25,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $return_validator->assert($return_date);
         $email_validator->assert($email);
         $reason_validator->assert($reason);
-
-        // TODO: Add to Database
+        $data = array(
+            'depart_date' => $depart_date,
+            'return_date' => $return_date,
+            'email' => $email,
+            'reason' => $reason,
+        );
+        $request = new Request($data);
+        $db = new RequestRepository();
+        $db->save($request);
     } catch (NestedValidationException $e) {
         echo "<ul>";
         foreach ($e->getMessages() as $message) {
@@ -30,3 +42,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "</ul>";
     }
 }
+
+$db = new RequestRepository();

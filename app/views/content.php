@@ -21,3 +21,4 @@
 
   <button type="submit" value="submit" class="btn">Submit</button>
 </form>
+<?php echo  'The total number of requests is currently ' . $db->countAll(); ?>
